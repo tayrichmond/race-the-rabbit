@@ -1,0 +1,86 @@
+<script>
+
+	//Finds random number between 1-10
+	function randomInt() {
+		return Math.floor(Math.random() * 10 + 1);
+	}
+
+	function Animal(name, speed, focus) {
+		this.name = name;
+		this.speed = speed;
+		this.focus = focus;
+		this.position = 0;
+		this.isFocused = function() {
+			return randomInt() < this.focus;
+		}
+		this.advance = function() {
+			if(this.isFocused()) {
+				this.position += this.speed;
+			} 
+		}
+		this.progressReport = function() {
+			return this.name + " is at: " + this.position;
+		}
+	}
+
+	function whatAnimal() { 
+		var pickAnimal = prompt("Which racer would you like to pick? The turtle, badger, buffalo, or sheep?");
+		return pickAnimal.toLowerCase();
+	}
+
+	var compAnimal = new Animal("Rabbit", 9, 1);
+	var turtle = new Animal("Turtle", 2, 9);
+	var badger = new Animal("Badger", 7, 5);
+	var buffalo = new Animal("Buffalo", 7, 4);
+	var sheep = new Animal("Sheep", 6, 9);
+	var meters = 100;
+
+	
+	alert("Race the Rabbit!");
+	
+	
+	var userAnimal = whatAnimal();
+	
+	
+	switch(userAnimal) {
+		case "turtle":
+			userAnimal = turtle;
+			break;
+		case "badger":
+			userAnimal = badger;
+			break;
+		case "buffalo":
+			userAnimal = buffalo;
+			break;
+		case "sheep":
+			userAnimal = sheep;
+			break;
+		default: 
+			alert("I don't recogniaze that choice. I'll pick for you. How about Buffalo?");
+			userAnimal = buffalo;
+	}
+	
+	alert("Your racer is " + userAnimal.name + "!");
+	alert("Your racing to 100. Hit 'ok' when you are ready!");
+
+	while(compAnimal.position < meters && userAnimal.position < meters) {
+		compAnimal.advance();
+		userAnimal.advance();
+		alert(compAnimal.progressReport() + " | " + userAnimal.progressReport());
+	}
+
+	alert(compAnimal.progressReport());
+	alert(userAnimal.progressReport());
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
